@@ -24,7 +24,7 @@
       text-align: center;
       color: yellow;
       text-shadow: 3px 3px 10px red;
-      display: none; /* 最初は非表示 */
+      display: none;
     }
     .overlay img {
       width: 200px;
@@ -47,10 +47,13 @@
 </head>
 <body>
 
-  <video controls autoplay>
+  <video autoplay muted>
     <source src="sales_background.mp4" type="video/mp4">
-    お使いのブラウザは動画に対応していません。
   </video>
+
+  <audio autoplay>
+    <source src="effect.mp3" type="audio/mpeg">
+  </audio>
 
   <div class="overlay" id="overlay">
     <img id="face" src="" alt="営業マンの写真">
@@ -60,18 +63,13 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const name = params.get("name") || "○○";
-    const imageFile = `${name}.jpg`;
-
-    // テキストと画像の内容をセット
     document.getElementById("message").textContent = `${name} さんが受注！`;
-    document.getElementById("face").src = imageFile;
+    document.getElementById("face").src = `${name}.jpg`;
 
-    // 5秒後に表示
     setTimeout(() => {
       document.getElementById("overlay").style.display = 'block';
-    }, 5000);
+    }, 7500);
 
-    // 自動で閉じる（例：15秒後）
     setTimeout(() => window.close(), 15000);
   </script>
 
